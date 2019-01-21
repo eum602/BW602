@@ -1,6 +1,6 @@
 # BW602
 This is aproject which main goal is to create a blockchain by using WebRTC technology, so any people over the browser can use this technology, even if that user is behind a symetric NAT.
-All the project is built using Node.js and react.js.
+All the project is built using Node.js, react.js and webRTC technology.
 
 ## How it works?
 1.  The server assign an automatic id (node_uuid) to every user who visits the page; also that user will be able to connect with any other FOUR users which also visit the page.
