@@ -104,11 +104,11 @@ export default class NewPeer extends Component {
         //let [i,rtcPeerConn,sendDataChannel,catchDataChannel] = [...result]
         //let {i,rtcPeerConn,sendDataChannel,catchDataChannel} = this.state
         const servers = {
-            'iceServers':[//{
-                //'url':'stun:stun.l.google.com:19302'
+            'iceServers':[{
+                'url':'stun:stun.l.google.com:19302'
             //},{'url': 'stun:stun.services.mozilla.com'}
-            {'urls':'turn:kaydee@159.65.151.221','credential':'userdeepak','username':'kaydee'}
-        ]
+            //{'urls':'turn:kaydee@159.65.151.221','credential':'userdeepak','username':'kaydee'
+            }]
         }
         const dataChannelOptions = {
             ordered: true//false, //not guaranteed delivery, unreliable but faster

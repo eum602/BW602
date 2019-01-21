@@ -6,7 +6,6 @@ import PouchdbFind from 'pouchdb-find';
 import DB from '../DB'
 
 export default class  Blockchain {
-        
 	constructor() {
 		PouchDB.plugin(PouchdbFind)////////////////////////////////
 		this.chain = []////////////////////////////////
@@ -427,13 +426,7 @@ export default class  Blockchain {
 	proofOfWork = (previousBlockHash, currentBlockData) => {
 		let nonce = 0;
 		let hash = this.hashBlock(previousBlockHash, currentBlockData, nonce);
-		while (hash.substring(0, 3) !== '000' && hash.substring(0, 6) !== '001' &&
-		hash.substring(0, 6) !== '002' && hash.substring(0, 6) !== '003' &&
-		hash.substring(0, 6) !== '004' &&
-		hash.substring(0, 6) !== '005' &&
-		hash.substring(0, 6) !== '006' &&
-		hash.substring(0, 6) !== '007' &&
-		hash.substring(0, 6) !== '008') {
+		while (hash.substring(0, 3) !== '009'){
 			nonce++;
 			hash = this.hashBlock(previousBlockHash, currentBlockData, nonce);
 		}
@@ -456,94 +449,3 @@ export default class  Blockchain {
 		return a
 	}
 }
-
-/*
-Blockchain.prototype.chainIsValid = function(blockchain) { //as a parameter a chain enter into this
-	//function with the name blockchain
-	let validChain = true;
-	for (var i = 1; i < blockchain.length; i++) {		
-		const prevBlock = blockchain[i - 1];
-		console.log('previous block' + ' : ',prevBlock);
-		const currentBlock = blockchain[i];
-		console.log('block' + i+1 + ' : ',currentBlock);
-		//1. verify the hashes on every block by rehashing them and verifiying the amount of zeros.
-		//const hash = this.hashBlock(previousBlockHash, currentBlockData, nonce);
-		let currentBlockData = { transactions: currentBlock['transactions'], index: currentBlock['index'] };
-		let previousBlockHash = prevBlock['hash'];
-		const blockHash = this.hashBlock(previousBlockHash, currentBlockData,currentBlock['nonce']);
-		console.log('blockHash',blockHash);
-		if (blockHash.substring(0, 6) !== '000000' && blockHash.substring(0, 6) !== '000001' &&
-		blockHash.substring(0, 6) !== '000002' && blockHash.substring(0, 6) !== '000003' &&
-		blockHash.substring(0, 6) !== '000004' &&
-		blockHash.substring(0, 6) !== '000005' &&
-		blockHash.substring(0, 6) !== '000006' &&
-		blockHash.substring(0, 6) !== '000007' &&
-		blockHash.substring(0, 6) !== '000008' ) validChain = false;
-		console.log('1. verify the hashes on every block by rehashing them and verifiying the amount of zeros: ',
-		validChain);
-		//2. verify the hash of the previous block hash on every current block
-		if (currentBlock['previousBlockHash'] !== prevBlock['hash']) validChain = false;
-		console.log('hash anterior',prevBlock['hash'],'previousBlockHash en current block',
-		currentBlock['previousBlockHash'])
-		console.log('2. verify the hash of the previous hash on every block: ', 
-		currentBlock['previousBlockHash'] == prevBlock['hash']);
-	};
-	//3. verify the initial values on the genesis block
-	const genesisBlock = blockchain[0];
-	const correctNonce = genesisBlock['nonce'] === 100;
-	const correctPreviousBlockHash = genesisBlock['previousBlockHash'] === '0';
-	const correctHash = genesisBlock['hash'] === '0';
-	const correctTransactions = genesisBlock['transactions'].length === 6;
-
-	if (!correctNonce || !correctPreviousBlockHash || !correctHash || !correctTransactions) validChain = false;
-	console.log('3. verify the initial values on the genesis block: ',
-	correctNonce && correctPreviousBlockHash && correctHash && correctTransactions);
-	return validChain;
-}
-
-/*
-Blockchain.prototype.getBlock = function(blockHash) {
-	let correctBlock = null;
-	this.chain.forEach(block => {
-		if (block.hash === blockHash) correctBlock = block;
-	});
-	return correctBlock;
-};
-
-
-
-
-
-Blockchain.prototype.getAddressData = function(address) {
-	const addressTransactions = [];
-	this.chain.forEach(block => {
-		block.transactions.forEach(transaction => {
-			if(transaction.sender === address || transaction.recipient === address) {
-				addressTransactions.push(transaction);
-			};
-		});
-	});
-
-	let balance = 0;
-	addressTransactions.forEach(transaction => {
-		if (transaction.recipient === address) balance += transaction.amount;
-		else if (transaction.sender === address) balance -= transaction.amount;
-	});
-
-	return {
-		addressTransactions: addressTransactions,
-		addressBalance: balance
-	};
-};
-
-
-
-
-*/
-
-
-
-//module.exports = Blockchain;
-
-
-

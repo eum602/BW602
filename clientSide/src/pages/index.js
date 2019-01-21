@@ -10,53 +10,53 @@ import Blockchain from '../Blockchain/Blockchain';
 
 const endpoint = "http://localhost:4001" // this is where we are connecting to with sockets
 class Mean extends Component {
-    state = {
-      db:new DB('blockchain'),
-      a:null
-    }
+  state = {
+    db:new DB('blockchain'),
+    a:null
+  }
 
-    componentWillMount(){
-      let nodesInfo = []
-      for(let i=0 ; i < 4;i++){
-        const socket = io.connect(endpoint)
-        socket.on('connect', ()=>{
-          console.log("triggered socket.id: ",socket.id)          
-        })
-        
-        const data = {'state':0 , 'socket':socket}
-        nodesInfo.push({...data})
-      }
-      console.log('NodesInfo initialized with sockets data...:',nodesInfo)
-      this.setState({nodesInfo})
-
-      //////////////////////////////////////////////
-      const blockchain = new Blockchain()      
-      new Promise((resolve,reject)=>{
-        resolve(blockchain.getLastBlock())
-        reject('Error getting Last block')
-      }).then(lastBlock=>{
-        if(lastBlock)this.setState({lastBlock})        
+  componentWillMount(){
+    let nodesInfo = []
+    for(let i=0 ; i < 4;i++){
+      const socket = io.connect(endpoint)
+      socket.on('connect', ()=>{
+        console.log("triggered socket.id: ",socket.id)          
       })
+      
+      const data = {'state':0 , 'socket':socket}
+      nodesInfo.push({...data})
     }
-  
-    componentDidMount(){
-      console.log('nodes info at the beggining of componentDidMount: ', this.state.nodesInfo )
-    new Promise((resolve,reject) => {
-      resolve(this.showUUID())
-      reject('Error getting UUID')
-    }).then(r=> {
-      for(let nodeInfo of this.state.nodesInfo){
-        const {socket} = nodeInfo
-        socket.on('newCandidate', candidatesSocket => socket.emit('xyz',
-        candidatesSocket,this.receiveCandidateHandler))//////
-        socket.on('startCallee', data => {
-        console.log("receiving call from peer: ", data.candidate_socket_id)
-        socket.emit('xyz',
-        data,this.becomeCallee)})
-        console.log('socket and uuid triggered',{'id':socket.id,'node_uuid':this.state.node_uuid})
-        socket.emit('searchingPeer',{'id':socket.id,'node_uuid':this.state.node_uuid})
-      }
+    console.log('NodesInfo initialized with sockets data...:',nodesInfo)
+    this.setState({nodesInfo})
+
+    //////////////////////////////////////////////
+    const blockchain = new Blockchain()      
+    new Promise((resolve,reject)=>{
+      resolve(blockchain.getLastBlock())
+      reject('Error getting Last block')
+    }).then(lastBlock=>{
+      if(lastBlock)this.setState({lastBlock})        
     })
+  }
+
+  componentDidMount(){
+    console.log('nodes info at the beggining of componentDidMount: ', this.state.nodesInfo )
+  new Promise((resolve,reject) => {
+    resolve(this.showUUID())
+    reject('Error getting UUID')
+  }).then(r=> {
+    for(let nodeInfo of this.state.nodesInfo){
+      const {socket} = nodeInfo
+      socket.on('newCandidate', candidatesSocket => socket.emit('xyz',
+      candidatesSocket,this.receiveCandidateHandler))//////
+      socket.on('startCallee', data => {
+      console.log("receiving call from peer: ", data.candidate_socket_id)
+      socket.emit('xyz',
+      data,this.becomeCallee)})
+      console.log('socket and uuid triggered',{'id':socket.id,'node_uuid':this.state.node_uuid})
+      socket.emit('searchingPeer',{'id':socket.id,'node_uuid':this.state.node_uuid})
+    }
+  })
   }
 
   
