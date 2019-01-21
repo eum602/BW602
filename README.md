@@ -4,7 +4,7 @@ All the project is built using Node.js, react.js and webRTC technology.
 
 ## How it works?
 1.  The server assign an automatic id (node_uuid) to every user who visits the page; also that user will be able to connect with any other FOUR users which also visit the page.
-2.  At the same time,webRTC, which is embeded in the client side, starts to recover ICE candidates(these are like paths that every user has).
+2.  At the same time,webRTC, which is embeded in the client side, starts to recover ICE candidates(these are like paths that every user has in order to establish a P2P communication with another user).
 3. After collecting all ICE candidates, these are transmited to other user,who also wants to enter into the network, by using sockets, the routing is made by a logic embedded in the server side.Now the users are fully connected and the server says goodbye(it means it does not interfere in the communication). If the communication between peers is broken the the server try to connect again to any other user available over the network.
 4. Now that peers are fully connected they are able to exchange data, in this case the data are blocks and transactions.
 5. Every user with at least one peer connection is able to create and mine transactions(PoW).
@@ -27,13 +27,13 @@ All the project is built using Node.js, react.js and webRTC technology.
 
 3. **Start the webApp**
     ```
-    3.1. Go into the clientSide folder and run node server.js
+    3.1. Go into the clientSide folder and run node server.js(it will run on the 4001 port).
     ```
     ```
-    3.2. Go into the serverSide folder and run npm start
+    3.2. Go into the serverSide folder and run npm start(it will run on the 3000 port).
     ```
     
-4. **Start a local server**
+4. **Start a local server(it will run on the 7000 port)**
     ```
     4.1. Go into the localServer folder and run NODE_DEBUG=server NODE_ENV=staging node index-cluster.js
     ```    
