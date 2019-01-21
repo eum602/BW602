@@ -1,5 +1,5 @@
 # BW602
-This is an open source project which main goal is to create a blockchain by using WebRTC technology, so any people over the browser can use this technology, even if that user is behind a symetric NAT.
+This is aproject which main goal is to create a blockchain by using WebRTC technology, so any people over the browser can use this technology, even if that user is behind a symetric NAT.
 All the project is built using Node.js and react.js.
 
 ## How it works?
@@ -41,3 +41,8 @@ All the project is built using Node.js and react.js.
     4.4. After creating some transactions you can click in operations button, then getPendingTrasactions button to see all the pending transaction.
     
     4.5. You can also click on the "mine" button to start the mining process which is starts the PoW (proof of work) algorithm. This algorithm is time consuming, so the difficulty has been fixed to be minimum.
+    
+    4.6. If you go to the incognito window and click on the home button then you will see that the newly created block has been received by the incognito node.
+    
+    4.7. You can now make any operation in any browser the incognito or the normal window browser and you will see that the transations and new created blocks by making PoW are reflected in the other node.
+    
