@@ -34,19 +34,10 @@ All the project is built using Node.js and react.js.
 
     4.1. Go to the Chrome browser and open http://localhost:3000/, Once there you can click on the "create Genesis Block" button and after that insert some values, after that click on createBlockchain button.
     
-    4.2. 
-    ```
-    Open an incognito browser and go to http://localhost:3000/
-    ```
-    4.3. 
-    ```
-    In the normal chrome window, you can click on operations button, then createTransaction button and create transaction.
-    ```
-    4.4. 
-    ```
-    After creating some transactions you can click in operations button, then getPendingTrasactions button to see all the pending transaction.
-    ```
-    4.5. 
-    ```
-    You can also click on the "mine" button to start the mining process which is starts the PoW (proof of work) algorithm. This algorithm is time consuming, so the difficulty has been fixed to be minimum.
-    ```
+    4.2. Open an incognito browser and go to http://localhost:3000/
+    
+    4.3. In the normal chrome window, you can click on operations button, then createTransaction button and create transaction.
+    
+    4.4. After creating some transactions you can click in operations button, then getPendingTrasactions button to see all the pending transaction.
+    
+    4.5. You can also click on the "mine" button to start the mining process which is starts the PoW (proof of work) algorithm. This algorithm is time consuming, so the difficulty has been fixed to be minimum.
