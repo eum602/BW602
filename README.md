@@ -15,7 +15,7 @@ All the project is built using Node.js, react.js and webRTC technology.
 
 ## Steps:
 
-1.**clone the repository**
+1. **clone the repository**
 
 2. **Install the dependencies**    
     ```
